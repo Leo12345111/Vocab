@@ -1,15 +1,3 @@
-// ==UserScript==
-// @name         Vocabulary Helper
-// @namespace    http://tampermonkey.net/
-// @version      00.00
-// @match        *://*.vocabulary.com/*
-// @grant        GM_setValue
-// @grant        GM_getValue
-// @grant        GM_xmlhttpRequest
-// @connect      *
-// @run-at       document-start
-// ==/UserScript==
-
 (function() {
     'use strict';
 
