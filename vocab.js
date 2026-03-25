@@ -33,7 +33,6 @@
     document.documentElement.appendChild(canvasHook);
     canvasHook.remove();
 
-    // FIXED: Replaced GM_addStyle with native standard JS implementation
     const customCss = `
         #custom-settings-btn { position: fixed; bottom: 20px; right: 20px; z-index: 99999; padding: 10px 15px; background-color: #2c3e50; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Arial, sans-serif; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         #custom-settings-btn:hover { background-color: #34495e; }
