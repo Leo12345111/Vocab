@@ -3,7 +3,6 @@
 // @namespace    http://tampermonkey.net/
 // @version      00.00
 // @match        *://*.vocabulary.com/*
-// @grant        GM_addStyle
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_xmlhttpRequest
@@ -34,7 +33,8 @@
     document.documentElement.appendChild(canvasHook);
     canvasHook.remove();
 
-    GM_addStyle(`
+    // FIXED: Replaced GM_addStyle with native standard JS implementation
+    const customCss = `
         #custom-settings-btn { position: fixed; bottom: 20px; right: 20px; z-index: 99999; padding: 10px 15px; background-color: #2c3e50; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Arial, sans-serif; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         #custom-settings-btn:hover { background-color: #34495e; }
         #custom-settings-panel { display: none; position: fixed; bottom: 70px; right: 20px; z-index: 99999; width: 280px; max-height: 80vh; overflow-y: auto; background-color: white; border: 2px solid #2c3e50; border-radius: 8px; padding: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); font-family: Arial, sans-serif; color: #333; }
@@ -56,7 +56,11 @@
         .spelling-word { display: inline-block; background: #e1f0fa; color: #2980b9; padding: 5px 10px; margin: 3px; border-radius: 4px; font-size: 13px; font-weight: bold; cursor: pointer; border: 1px solid #b9d8f0; transition: background 0.2s; }
         .spelling-word:hover { background: #b9d8f0; }
         .dimmed-disabled { pointer-events: none !important; opacity: 0.55 !important; transition: opacity 0.3s ease; }
-    `);
+    `;
+    const styleElement = document.createElement('style');
+    styleElement.type = 'text/css';
+    styleElement.textContent = customCss;
+    (document.head || document.documentElement).appendChild(styleElement);
 
     const stopWords = ['the','a','an','and','or','but','if','because','as','what','when','where','how','who','which','this','that','these','those','then','just','so','than','such','both','through','about','for','is','of','while','during','to','from','in','out','into','over','under','with','either','mentally','physically','cause','someone','something','make','has','have','had','do','does','did','be','been','being'];
 
